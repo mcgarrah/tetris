@@ -28,14 +28,14 @@ class TetrisManager:
             while True:
                 self._get_input_and_apply_move()
                 self._draw_board()
+                self._draw_shape()
                 if self.board.falling == 0:
                     self.state_matrix = self.board.update_state_board(self.y, self.x, self.state_matrix)
                     self._reset_x_y()
                     self.board.choose_random_shape_and_direction()
                     if self.board.is_overlapping(self.y, self.x, self.state_matrix):
                         break
-                    self.y += self.board.falling
-                    self._draw_shape()
+                self.y += self.board.falling
                 self._check_and_reset_completed_line()
             self._draw_game_over()
             self._get_closing_input()
