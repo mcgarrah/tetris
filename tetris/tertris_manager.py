@@ -1,3 +1,5 @@
+import random
+
 from .drawer import Drawer
 from .tetris_board import TetrisBoard
 from .shapes import box, inverse_l, stick, outverse_j, z_shape
@@ -76,7 +78,7 @@ class TetrisManager:
         ]
 
     def _reset_x_y(self):
-        self.x = 8
+        self.x = random.randint(4, self.N_ROWS - 1)
         self.y = 3
 
     def _register_shapes(self):

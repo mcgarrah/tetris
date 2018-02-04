@@ -67,7 +67,7 @@ class TetrisBoard:
                         xt = x + h
                     if xt - 4 < 0:
                         ovl = 1
-                    elif xt - 4 > 17:
+                    elif xt - 4 > (self.columns - 1):
                         ovl = 1
                     elif yt - 3 > 20:
                         ovl = 1
@@ -101,7 +101,7 @@ class TetrisBoard:
                         self.cleft = 0
                     elif state_board[yt - 3][xt - 5] == 1:
                         self.cleft = 0
-                    if xt - 3 > 17:
+                    if xt - 3 > (self.columns - 1):
                         self.cright = 0
                     elif state_board[yt - 3][xt - 3] == 1:
                         self.cright = 0
@@ -119,9 +119,3 @@ class TetrisBoard:
                     elif self.direction == 3:
                         state_board[y + ((self.width - 1) - w) - 3][x + h - 4] = 1
         return state_board
-
-    def get_width(self):
-        if self.direction == 1 or self.direction == 3:
-            return self.height
-        elif self.direction == 0 or self.direction == 2:
-            return self.width
