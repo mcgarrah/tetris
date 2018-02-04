@@ -9,7 +9,7 @@ follow [these](https://www.ics.uci.edu/~pattis/common/handouts/pythoneclipsejava
 
 
 ### commands
-• a : move piece left
-• d : move piece right
-• w : rotate piece counter clockwise
-• s : rotate piece clockwise
+- a : move piece left
+- d : move piece right
+- w : rotate piece counter clockwise
+- s : rotate piece clockwise
