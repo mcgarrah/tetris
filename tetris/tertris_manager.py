@@ -1,8 +1,9 @@
 import random
 
+from . import settings
 from .drawer import Drawer
 from .tetris_board import TetrisBoard
-from .shapes import box, inverse_l, stick, outverse_j, z_shape
+from .utils import camelize, load_object
 
 
 class TetrisManager:
@@ -82,8 +83,8 @@ class TetrisManager:
         self.y = 3
 
     def _register_shapes(self):
-        shapes = [box.Box(), inverse_l.InverseL(), stick.Stick(), outverse_j.OutverseJ(), z_shape.ZShape()]
-        for shape in shapes:
+        for _shape in settings.shapes:
+            shape = load_object('{}.{}.{}'.format(settings.shapes_module, _shape, camelize(_shape)))()
             self.board.register_shapes(shape)
 
     def _get_closing_input(self):
@@ -99,7 +100,7 @@ class TetrisManager:
         while True:
             c = self.drawer.get_input()
             if c == ord('w'):
-                self.board.turn_clockwise(self.y, self.x, self.state_matrix)
+                self.board.turn_anticlockwise(self.y, self.x, self.state_matrix)
                 break
             elif c == ord('a'):
                 self.x -= self.board.cleft
@@ -108,5 +109,5 @@ class TetrisManager:
                 self.x += self.board.cright
                 break
             elif c == ord('s'):
-                self.board.turn_anticlockwise(self.y, self.x, self.state_matrix)
+                self.board.turn_clockwise(self.y, self.x, self.state_matrix)
                 break
